@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://csd6i65dlrmhb"]
+
+[ext_resource type="Texture2D" uid="uid://brrwc5bvn6shk" path="res://separator.png" id="1_ynoed"]
+[ext_resource type="Script" path="res://player.gd" id="2_6wrr8"]
+[ext_resource type="Texture2D" uid="uid://bdoddc5w2kwje" path="res://paddle.png" id="3_ytao0"]
+[ext_resource type="Texture2D" uid="uid://cde6btklnu3te" path="res://ball.png" id="4_5efox"]
+[ext_resource type="Script" path="res://bola.gd" id="4_o2qsf"]
+[ext_resource type="Script" path="res://player2.gd" id="4_pp5eo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gftwo"]
+size = Vector2(9.33333, 33.6667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7hpb"]
+size = Vector2(10, 10.3333)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+texture = ExtResource("1_ynoed")
+
+[node name="paleta1" type="CharacterBody2D" parent="." groups=["paddle"]]
+position = Vector2(97, 324)
+scale = Vector2(3, 6)
+script = ExtResource("2_6wrr8")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="paleta1"]
+show_behind_parent = true
+texture_filter = 1
+texture = ExtResource("3_ytao0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paleta1"]
+shape = SubResource("RectangleShape2D_gftwo")
+
+[node name="paleta2" type="CharacterBody2D" parent="." groups=["paddle"]]
+position = Vector2(1055, 324)
+scale = Vector2(3, 6)
+script = ExtResource("4_pp5eo")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="paleta2"]
+show_behind_parent = true
+texture_filter = 1
+texture = ExtResource("3_ytao0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="paleta2"]
+position = Vector2(-0.333305, -0.166668)
+shape = SubResource("RectangleShape2D_gftwo")
+
+[node name="bola" type="CharacterBody2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(3, 3)
+collision_layer = 2
+script = ExtResource("4_o2qsf")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="bola"]
+show_behind_parent = true
+texture_filter = 1
+texture = ExtResource("4_5efox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bola"]
+position = Vector2(2.28882e-05, 0)
+scale = Vector2(0.8, 0.8)
+shape = SubResource("RectangleShape2D_x7hpb")
