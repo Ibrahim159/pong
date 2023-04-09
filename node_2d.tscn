@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://node_2d.gd" id="1_66bmr"]
 [ext_resource type="Texture2D" uid="uid://brrwc5bvn6shk" path="res://separator.png" id="1_ynoed"]
-[ext_resource type="Script" path="res://player.gd" id="2_6wrr8"]
+[ext_resource type="Script" path="res://player2.gd" id="3_gelwt"]
+[ext_resource type="Script" path="res://ia.gd" id="3_guwx2"]
 [ext_resource type="Texture2D" uid="uid://bdoddc5w2kwje" path="res://paddle.png" id="3_ytao0"]
 [ext_resource type="Texture2D" uid="uid://cde6btklnu3te" path="res://ball.png" id="4_5efox"]
 [ext_resource type="Script" path="res://bola.gd" id="4_o2qsf"]
-[ext_resource type="Script" path="res://player2.gd" id="4_pp5eo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gftwo"]
 size = Vector2(9.33333, 33.6667)
@@ -31,7 +31,7 @@ texture = ExtResource("1_ynoed")
 [node name="paleta1" type="CharacterBody2D" parent="." groups=["paddle"]]
 position = Vector2(97, 324)
 scale = Vector2(3, 6)
-script = ExtResource("4_pp5eo")
+script = ExtResource("3_gelwt")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="paleta1"]
@@ -45,7 +45,7 @@ shape = SubResource("RectangleShape2D_gftwo")
 [node name="paleta2" type="CharacterBody2D" parent="." groups=["paddle"]]
 position = Vector2(1055, 324)
 scale = Vector2(3, 6)
-script = ExtResource("2_6wrr8")
+script = ExtResource("3_guwx2")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="paleta2"]
@@ -107,5 +107,9 @@ metadata/_edit_group_ = true
 position = Vector2(1, -4)
 shape = SubResource("RectangleShape2D_5eln1")
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="Area2D" to="bola" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Area2D2" to="bola" method="_on_area_2d_2_body_entered"]
+[connection signal="timeout" from="Timer" to="paleta2" method="_on_timer_timeout"]

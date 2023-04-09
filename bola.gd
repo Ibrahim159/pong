@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 600
+@export var speed = 700.0
 var initial_direction = Vector2(1,1).normalized()
 var direction = initial_direction 
 var last_hit = null;
@@ -13,12 +13,12 @@ func _physics_process(delta):
 	
 	if collision:
 		direction = direction.bounce(collision.get_normal())
-		speed += 100
+		speed += 25.0
 		last_hit = direction
 		
 	if position.x < 0 or position.x > 1152:
 		direction.x = -direction.x
-		speed = 600
+		speed = 700.0
 		position = Vector2(576, 324)
 		
 		if last_hit != null and last_hit.x < 0:
@@ -60,6 +60,8 @@ func _winner():
 func _reset_game():
 	get_parent().get_node("paleta1").speed = 0
 	get_parent().get_node("paleta2").speed = 0
+	var timer = get_parent().get_node("Timer")
+	get_parent().remove_child(timer)
 	speed = 0;
 	
 	if Input.is_action_just_pressed("ui_accept"):
